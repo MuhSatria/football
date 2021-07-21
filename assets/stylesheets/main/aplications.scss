@@ -1,0 +1,12 @@
+@import 'abstracts/variables';
+@import 'abstracts/general';
+
+// animation scss
+@import 'vendor/animated';
+
+// navigation
+@import 'navigations/nav';
+
+@import './homepage.scss';
+@import './list.scss';
+@import './detail.scss'

@@ -1,0 +1,47 @@
+body {
+  font: {
+    family: 'Inter', sans-serif;
+    size: 16px;
+  };
+}
+
+.overlay {
+  visibility: hidden;
+  opacity: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  transition: all .5s ease-in-out;
+  &.show-overlay {
+      visibility: visible;
+      opacity: 1;
+  }
+}
+
+.button-ripple {
+  position: relative;
+  display: inline-flex;
+  padding: 12px 36px;
+  color: #fff !important;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 2px;
+  border-radius: 40px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #0162c8, #55e7fc);
+
+  span {
+    position: absolute;
+    overflow: hidden;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border-radius: 50%;
+    animation: btn-ripple 1s linear infinite;
+  }
+}
