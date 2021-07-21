@@ -8,4 +8,7 @@
   background: aliceblue;
   display: flex;
   align-items: center;
+  box-shadow: 1px -1px 25px -3px rgba(196,196,196,0.39);
+  -webkit-box-shadow: 1px -1px 25px -3px rgba(196,196,196,0.39);
+  -moz-box-shadow: 1px -1px 25px -3px rgba(196,196,196,0.39);
 }

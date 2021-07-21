@@ -3,7 +3,8 @@
     <Navbar :name="data.name" />
     <v-container>
       <div class="box-header">
-        <div class="img-logo" :style="{ 'background-image': 'url(' + data.crestUrl + ')' }" />
+        <div v-if="data.crestUrl !== null" class="img-logo" :style="{ 'background-image': 'url(' + data.crestUrl + ')' }" />
+        <div v-else class="img-logo" />
         <div class="desc">
           <h2 class="title-name" v-text="data.name">
             Mancaster
@@ -49,7 +50,7 @@
         <h2 class="mb-4">
           Player
         </h2>
-        <v-row no-gutters>
+        <v-row v-if="dataNull !== true" no-gutters>
           <v-col
             v-for="(player, index_play) in data.squad"
             :key="index_play"
@@ -68,7 +69,7 @@
                     <label for="playerPosition">Position</label>
                     <p id="playerPosition" class="player" v-text="data.squad[index_play].position" />
                     <label for="playerDate">Date of Birth</label>
-                    <p id="playerDate" class="player" v-text="data.squad[index_play].dateOfBirth" />
+                    <p id="playerDate" class="player" v-text="data.squad[index_play].dateOfBirth.slice(0, 10)" />
                     <label for="playerCountry">Country of Birth</label>
                     <p id="playerCountry" class="player" v-text="data.squad[index_play].countryOfBirth" />
                     <label for="playerNation">Nationality</label>
@@ -81,13 +82,24 @@
             </v-card>
           </v-col>
         </v-row>
+        <div v-else class="box-null">
+          <img src="@/assets/images/no_data.svg" alt="">
+          <p class="mb-0">
+            Data Kosong!
+          </p>
+        </div>
       </div>
     </v-container>
   </div>
 </template>
 
 <script>
+import CallApiLibrary from '@/lib/callApiLibrary'
+
 export default {
+  mixins: [
+    CallApiLibrary
+  ],
   data () {
     return {
       title: 'Detail',
@@ -146,12 +158,29 @@ export default {
             role: 'PLAYER'
           }
         ]
-      }
+      },
+      dataNull: false
     }
   },
   head () {
     return {
       title: this.title
+    }
+  },
+  created () {
+    this.getData()
+  },
+  methods: {
+    getData () {
+      const idTeam = this.$route.params.id
+      this.callApiGet(`/v2/teams/${idTeam}`, (responseData) => {
+        this.data = responseData
+        if (this.data.squad.length === 0) {
+          this.dataNull = true
+        }
+      }, (responseData) => {
+      }, (responseData) => {
+      }, true, true)
     }
   }
 }
