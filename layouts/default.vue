@@ -2,6 +2,7 @@
   <v-app dark>
     <v-main>
       <Nuxt />
+      <Loading />
     </v-main>
   </v-app>
 </template>

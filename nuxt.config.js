@@ -43,11 +43,23 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseUrl: 'https://api.football-data.org/'
+    // proxy: true
+  },
+
+  // proxy: {
+  //   '/api/': 'https://api.football-data.org/'
+  // },
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://api.football-data.org/'
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -76,5 +88,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  // Loading
+  loading: '@/components/Loading.vue'
 }
