@@ -179,6 +179,7 @@ export default {
           this.dataNull = true
         }
       }, (responseData) => {
+        this.showNotificationMessage()
       }, (responseData) => {
       }, true, true)
     }

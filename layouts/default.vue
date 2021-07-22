@@ -3,6 +3,7 @@
     <v-main>
       <Nuxt />
       <Loading />
+      <notifications position="top right" width="100%" classes="my-custom-class" style="color: #fff"/>
     </v-main>
   </v-app>
 </template>

@@ -55,6 +55,7 @@ export default {
       this.callApiGet('v2/areas/', (responseData) => {
         this.data = responseData.areas
       }, (responseData) => {
+        this.showNotificationMessage()
       }, (responseData) => {
       }, true, true)
     }
